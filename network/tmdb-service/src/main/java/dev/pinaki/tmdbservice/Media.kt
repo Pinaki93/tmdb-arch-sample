@@ -1,4 +1,4 @@
-package dev.pinaki.tmdbarchsample.data.remote.model
+package dev.pinaki.tmdbservice
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Tmdb Arch Sample"
 include(":app")
- 
+include(":network")
+include(":network:tmdb-service")

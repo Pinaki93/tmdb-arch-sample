@@ -1,16 +1,20 @@
-package dev.pinaki.tmdbarchsample.network
+package dev.pinaki.network
 
-import dev.pinaki.tmdbarchsample.BuildConfig
+import dev.pinaki.network.di.ApiKey
+import dev.pinaki.network.di.DefaultLanguage
 import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
-class DefaultParamsInterceptor @Inject constructor() : Interceptor {
+class DefaultParamsInterceptor @Inject constructor(
+    @ApiKey private val apiKey: String,
+    @DefaultLanguage private val defaultLanguage: String
+) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val originalRequest = chain.request()
         val modifiedUrl = originalRequest.url.newBuilder()
-            .addQueryParameter("api_key", BuildConfig.API_KEY)
-            .addQueryParameter("language", BuildConfig.DEFAULT_LANGUAGE)
+            .addQueryParameter("api_key", apiKey)
+            .addQueryParameter("language", defaultLanguage)
             .build()
 
         val requestWithApiKey = originalRequest.newBuilder()

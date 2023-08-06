@@ -1,6 +1,5 @@
-package dev.pinaki.tmdbarchsample.data.remote
+package dev.pinaki.tmdbservice
 
-import dev.pinaki.tmdbarchsample.data.remote.model.MediaResponse
 import retrofit2.http.GET
 
 interface TrendingService {

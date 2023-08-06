@@ -1,6 +1,7 @@
 package dev.pinaki.tmdbarchsample.di
 
-import dev.pinaki.tmdbarchsample.data.remote.TrendingService
+import dev.pinaki.network.di.TmdbRetrofit
+import dev.pinaki.tmdbservice.TrendingService
 import dev.pinaki.tmdbarchsample.util.service
 import retrofit2.Retrofit
 

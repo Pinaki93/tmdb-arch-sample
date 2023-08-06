@@ -1,26 +1,16 @@
-package dev.pinaki.tmdbarchsample.di
+package dev.pinaki.network.di
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import dev.pinaki.tmdbarchsample.network.DefaultParamsInterceptor
+import dev.pinaki.network.DefaultParamsInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit.SECONDS
-import javax.inject.Qualifier
 import javax.inject.Singleton
-
-@Qualifier
-@Retention(AnnotationRetention.RUNTIME)
-annotation class TmdbRetrofit
-
-@Qualifier
-@Retention(AnnotationRetention.RUNTIME)
-annotation class AuthOkHttpClient
-
 
 @Module
 @InstallIn(SingletonComponent::class)
