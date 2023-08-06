@@ -66,6 +66,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
+    implementation("androidx.navigation:navigation-compose:2.7.0-rc01")
 
     // add retrofit, moshi, okhttp, coroutines, hilt,dependencies here
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
@@ -73,6 +74,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
     implementation("com.squareup.moshi:moshi-kotlin:1.12.0")
     implementation("com.google.dagger:hilt-android:2.44.2")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.6.0")
     kapt("com.google.dagger:hilt-android-compiler:2.44.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1")
     kapt("androidx.hilt:hilt-compiler:1.0.0")
