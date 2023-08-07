@@ -6,7 +6,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.pinaki.network.di.ApiKey
 import dev.pinaki.network.di.DefaultLanguage
+import dev.pinaki.network.di.OkHttpCacheSize
 import dev.pinaki.tmdbarchsample.BuildConfig
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -18,4 +20,9 @@ object ConfigModule {
     @Provides
     @DefaultLanguage
     fun providesDefaultLanguage(): String = BuildConfig.DEFAULT_LANGUAGE
+
+    @Provides
+    @OkHttpCacheSize
+    @Singleton
+    fun providesOkHttpCacheSize(): Long = BuildConfig.OKHTTP_CACHE_SIZE.toLong()
 }

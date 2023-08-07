@@ -1,14 +1,18 @@
 package dev.pinaki.network.di
 
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dev.pinaki.network.DefaultParamsInterceptor
+import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.io.File
 import java.util.concurrent.TimeUnit.SECONDS
 import javax.inject.Singleton
 
@@ -19,7 +23,10 @@ object NetworkModule {
     @Provides
     @Singleton
     @AuthOkHttpClient
-    fun providesOkHttpClient(defaultParamsInterceptor: DefaultParamsInterceptor): OkHttpClient =
+    fun providesOkHttpClient(
+        defaultParamsInterceptor: DefaultParamsInterceptor,
+        @OkHttpCacheSize cacheSize: Long
+    ): OkHttpClient =
         OkHttpClient.Builder()
             .addInterceptor(HttpLoggingInterceptor().apply {
                 level = HttpLoggingInterceptor.Level.BODY
@@ -28,6 +35,7 @@ object NetworkModule {
             .readTimeout(30, SECONDS)
             .writeTimeout(30, SECONDS)
             .connectTimeout(30, SECONDS)
+            .cache(Cache(File("/local/cacheDirectory"), cacheSize))
             .build()
 
     @Provides

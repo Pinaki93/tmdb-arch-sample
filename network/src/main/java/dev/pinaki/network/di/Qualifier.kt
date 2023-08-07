@@ -17,3 +17,7 @@ annotation class ApiKey
 @Qualifier
 @Retention(AnnotationRetention.RUNTIME)
 annotation class DefaultLanguage
+
+@Qualifier
+@Retention(AnnotationRetention.RUNTIME)
+annotation class OkHttpCacheSize
