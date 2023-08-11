@@ -1,9 +1,11 @@
 package dev.pinaki.medialist
 
 import androidx.annotation.StringRes
+import androidx.compose.runtime.Immutable
 import dev.pinaki.arch.Async
 import dev.pinaki.model.MediaResult
 
+@Immutable
 data class MediaListUiState(
     val isLoading: Boolean = false,
     @StringRes val errorMessage: Int? = null,
