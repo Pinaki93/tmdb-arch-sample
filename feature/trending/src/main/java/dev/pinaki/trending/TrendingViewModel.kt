@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dev.pinaki.arch.Async
+import dev.pinaki.medialist.MediaListUiState
+import dev.pinaki.medialist.mapToUiState
 import dev.pinaki.model.MediaResult
 import dev.pinaki.util.WhileUiSubscribed
 import dev.pinaki.util.passTo
@@ -21,12 +23,12 @@ class TrendingViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _trendingMedia = MutableStateFlow<Async<MediaResult>>(Async.Loading)
-    val uiState: StateFlow<TrendingUiState> = _trendingMedia
-        .map { mapToUiState(it) }
+    val uiState: StateFlow<MediaListUiState> = _trendingMedia
+        .map { it.mapToUiState(R.string.an_error_occurred) }
         .stateIn(
             scope = viewModelScope,
             started = WhileUiSubscribed,
-            initialValue = TrendingUiState(isLoading = true)
+            initialValue = MediaListUiState(isLoading = true)
         )
 
     init {
@@ -40,33 +42,3 @@ class TrendingViewModel @Inject constructor(
         }
     }
 }
-
-private fun mapToUiState(result: Async<MediaResult>): TrendingUiState {
-    return when (result) {
-        is Async.Error -> TrendingUiState(
-            errorMessage = R.string.an_error_occurred
-        )
-
-        is Async.Success -> TrendingUiState(
-            trendingList = result.data.results.map { media ->
-                MediaUiState(
-                    title = media.title.ifBlank { media.originalTitle },
-                    id = media.id
-                )
-            }
-        )
-
-        Async.Loading -> TrendingUiState(isLoading = true)
-    }
-}
-
-data class TrendingUiState(
-    val isLoading: Boolean = false,
-    @StringRes val errorMessage: Int? = null,
-    val trendingList: List<MediaUiState> = emptyList()
-)
-
-data class MediaUiState(
-    val id: Int,
-    val title: String
-)

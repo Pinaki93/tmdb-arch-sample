@@ -1,4 +1,4 @@
-package dev.pinaki.trending.mapper
+package dev.pinaki.trending
 
 import dev.pinaki.arch.Mapper
 import dev.pinaki.model.Media

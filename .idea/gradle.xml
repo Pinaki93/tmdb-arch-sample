@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/core/model" />
             <option value="$PROJECT_DIR$/core/util" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/medialist" />
             <option value="$PROJECT_DIR$/feature/trending" />
             <option value="$PROJECT_DIR$/network" />
             <option value="$PROJECT_DIR$/network/tmdb-service" />

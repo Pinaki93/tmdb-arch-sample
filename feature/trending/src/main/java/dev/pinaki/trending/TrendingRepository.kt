@@ -3,7 +3,6 @@ package dev.pinaki.trending
 import dev.pinaki.arch.Async
 import dev.pinaki.model.MediaResult
 import dev.pinaki.tmdbservice.TrendingService
-import dev.pinaki.trending.mapper.TrendingResponseMapper
 import dev.pinaki.util.asyncFlow
 import dev.pinaki.util.di.IoDispatcher
 import kotlinx.coroutines.CoroutineDispatcher
