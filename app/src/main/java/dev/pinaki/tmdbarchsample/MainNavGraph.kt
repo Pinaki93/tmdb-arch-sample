@@ -6,9 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import dev.pinaki.tmdbarchsample.navigation.TmdbDestinations
 import dev.pinaki.tmdbarchsample.navigation.TmdbDestinations.TRENDING_ROUTE
-import dev.pinaki.trending.TrendingScreen
+import dev.pinaki.trending.TrendingScreenDestination
 
 @Composable
 fun MainNavGraph(
@@ -22,7 +21,7 @@ fun MainNavGraph(
         composable(
             route = TRENDING_ROUTE
         ) {
-            TrendingScreen(
+            TrendingScreenDestination(
                 modifier = modifier
             )
         }

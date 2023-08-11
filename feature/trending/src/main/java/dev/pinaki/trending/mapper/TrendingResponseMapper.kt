@@ -27,7 +27,7 @@ class TrendingResponseMapper @Inject constructor() :
                     adult,
                     backdropPath,
                     id,
-                    title,
+                    title.ifBlank { name },
                     originalLanguage,
                     originalTitle,
                     overview,

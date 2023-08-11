@@ -1,4 +1,4 @@
-package dev.pinaki.tmdbarchsample.di
+package dev.pinaki.util.di
 
 import dagger.Module
 import dagger.Provides

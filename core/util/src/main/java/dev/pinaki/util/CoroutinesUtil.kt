@@ -1,5 +1,7 @@
 package dev.pinaki.util
 
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 
 private const val StopTimeoutMillis: Long = 5000
@@ -14,3 +16,7 @@ private const val StopTimeoutMillis: Long = 5000
  * save resources when the app is in the background but let users switch between apps quickly.
  */
 val WhileUiSubscribed: SharingStarted = SharingStarted.WhileSubscribed(StopTimeoutMillis)
+
+suspend fun <T> Flow<T>.passTo(flow: MutableStateFlow<T>) {
+    collect { flow.emit(it) }
+}

@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="trending">Trending</string>
+    <string name="an_error_occurred">An Error occurred while fetching the data. Please try again</string>
+    <string name="retry">Retry</string>
 </resources>
