@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import dev.pinaki.arch.Async
 import dev.pinaki.model.MediaResult
+import dev.pinaki.util.StringResource
 
 @Immutable
 data class MediaListUiState(
@@ -12,20 +13,26 @@ data class MediaListUiState(
     val trendingList: List<MediaUiState> = emptyList()
 )
 
-fun Async<MediaResult>.mapToUiState(
-    @StringRes errorMessage: Int
+inline fun Async<MediaResult>.mapToUiState(
+    @StringRes errorMessage: Int,
+    ratingText: (rating: Double, totalVotes: Int) -> StringResource,
 ): MediaListUiState {
-    return when (this) {
+    return when (this@mapToUiState) {
         is Async.Error -> MediaListUiState(
             errorMessage = errorMessage
         )
 
         is Async.Success -> MediaListUiState(
             trendingList = data.results.map { media ->
-                MediaUiState(
-                    title = media.title.ifBlank { media.originalTitle },
-                    id = media.id
-                )
+                with(media) {
+                    MediaUiState(
+                        id = id,
+                        title = title.ifBlank { media.originalTitle },
+                        language = originalLanguage,
+                        ratingText = ratingText(voteAverage, voteCount),
+                        posterUrl = media.posterUrl()
+                    )
+                }
             }
         )
 
@@ -35,5 +42,8 @@ fun Async<MediaResult>.mapToUiState(
 
 data class MediaUiState(
     val id: Int,
-    val title: String
+    val title: String,
+    val language: String,
+    val ratingText: StringResource,
+    val posterUrl: String,
 )

@@ -1,4 +1,4 @@
-package dev.pinaki.trending
+package dev.pinaki.medialist
 
 import dev.pinaki.arch.Mapper
 import dev.pinaki.model.Media
@@ -7,7 +7,7 @@ import dev.pinaki.tmdbservice.MediaResponse
 import dev.pinaki.tmdbservice.MediaResultResponse
 import javax.inject.Inject
 
-class TrendingResponseMapper @Inject constructor() :
+class MediaResultResponseMapper @Inject constructor() :
     Mapper<MediaResultResponse, MediaResult> {
     override fun map(input: MediaResultResponse): MediaResult {
         return with(input) {
